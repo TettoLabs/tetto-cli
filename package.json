@@ -1,0 +1,48 @@
+{
+  "name": "create-tetto-agent",
+  "version": "0.1.0",
+  "description": "Scaffold Tetto AI agents with one command",
+  "bin": {
+    "create-tetto-agent": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "tsx test/cli.test.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "tetto",
+    "ai-agents",
+    "cli",
+    "scaffold",
+    "generator",
+    "create",
+    "agent",
+    "marketplace"
+  ],
+  "author": "Tetto Labs",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TettoLabs/create-tetto-agent"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "chalk": "^5.6.2",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.8.1",
+    "@types/prompts": "^2.4.9",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,29 @@
+export function tsConfig(): string {
+  return JSON.stringify(
+    {
+      compilerOptions: {
+        target: 'ES2020',
+        lib: ['ES2020'],
+        jsx: 'preserve',
+        module: 'esnext',
+        moduleResolution: 'bundler',
+        resolveJsonModule: true,
+        allowJs: true,
+        strict: true,
+        noEmit: true,
+        esModuleInterop: true,
+        skipLibCheck: true,
+        forceConsistentCasingInFileNames: true,
+        incremental: true,
+        plugins: [{ name: 'next' }],
+        paths: {
+          '@/*': ['./*']
+        }
+      },
+      include: ['next-env.d.ts', '**/*.ts', '**/*.tsx', '.next/types/**/*.ts'],
+      exclude: ['node_modules']
+    },
+    null,
+    2
+  );
+}

@@ -1,0 +1,13 @@
+export function vercelConfig(): string {
+  return JSON.stringify(
+    {
+      buildCommand: 'npm run build',
+      devCommand: 'npm run dev',
+      installCommand: 'npm install',
+      framework: 'nextjs',
+      regions: ['iad1']
+    },
+    null,
+    2
+  );
+}
