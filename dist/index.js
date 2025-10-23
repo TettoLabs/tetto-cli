@@ -1,21 +1,23 @@
 #!/usr/bin/env node
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const prompts_1 = require("./prompts");
-const generator_1 = require("./generator");
-const logger_1 = require("./utils/logger");
-async function main() {
-    try {
-        // Welcome message
-        logger_1.logger.welcome();
-        // Run interactive prompts
-        const config = await (0, prompts_1.runCLI)();
-        // Generate project files
-        await (0, generator_1.generateAgent)(config);
-    }
-    catch (error) {
-        logger_1.logger.error(error);
-        process.exit(1);
-    }
+const commander_1 = require("commander");
+const init_1 = require("./commands/init");
+const program = new commander_1.Command();
+program
+    .name('tetto')
+    .description('The complete developer tool for Tetto AI agents')
+    .version('1.0.0');
+// tetto init - Create a new AI agent
+program
+    .command('init')
+    .description('Create a new AI agent')
+    .argument('[name]', 'Agent name (kebab-case)')
+    .action(init_1.initCommand);
+// Default behavior: if no command specified, run init (backwards compatible)
+if (process.argv.length === 2) {
+    (0, init_1.initCommand)();
 }
-main();
+else {
+    program.parse();
+}

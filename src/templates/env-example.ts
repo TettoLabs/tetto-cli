@@ -1,4 +1,4 @@
-import { AgentConfig } from '../prompts';
+import { AgentConfig } from '../commands/init-prompts';
 
 export function envExample(config: AgentConfig): string {
   const coordinatorSection =

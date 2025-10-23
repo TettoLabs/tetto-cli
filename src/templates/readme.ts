@@ -1,4 +1,4 @@
-import { AgentConfig } from '../prompts';
+import { AgentConfig } from '../commands/init-prompts';
 
 export function readme(config: AgentConfig): string {
   return `# ${config.agentName}

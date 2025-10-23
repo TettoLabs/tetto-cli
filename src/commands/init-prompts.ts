@@ -1,7 +1,7 @@
 import prompts from 'prompts';
 import chalk from 'chalk';
-import { validateAgentName, validatePrice } from './utils/validation';
-import { checkProjectExists } from './utils/files';
+import { validateAgentName, validatePrice } from '../utils/validation';
+import { checkProjectExists } from '../utils/files';
 
 export interface AgentConfig {
   agentName: string;

@@ -1,9 +1,9 @@
 import { mkdirSync, writeFileSync } from 'fs';
 import { join } from 'path';
-import { AgentConfig } from './prompts';
-import { logger } from './utils/logger';
-import { getProjectPath } from './utils/files';
-import * as templates from './templates';
+import { AgentConfig } from './init-prompts';
+import { logger } from '../utils/logger';
+import { getProjectPath } from '../utils/files';
+import * as templates from '../templates';
 
 export async function generateAgent(config: AgentConfig): Promise<void> {
   const projectPath = getProjectPath(config.agentName);

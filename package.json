@@ -41,8 +41,14 @@
     "node": ">=20.0.0"
   },
   "dependencies": {
+    "@clack/prompts": "^0.11.0",
     "chalk": "^5.6.2",
-    "prompts": "^2.4.2"
+    "cli-table3": "^0.6.5",
+    "commander": "^14.0.1",
+    "ky": "^1.13.0",
+    "ora": "^9.0.0",
+    "prompts": "^2.4.2",
+    "tetto-sdk": "file:../tetto-sdk"
   },
   "devDependencies": {
     "@types/node": "^24.8.1",

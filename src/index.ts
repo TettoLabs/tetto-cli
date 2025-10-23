@@ -1,23 +1,25 @@
 #!/usr/bin/env node
 
-import { runCLI } from './prompts';
-import { generateAgent } from './generator';
-import { logger } from './utils/logger';
+import { Command } from 'commander';
+import { initCommand } from './commands/init';
 
-async function main() {
-  try {
-    // Welcome message
-    logger.welcome();
+const program = new Command();
 
-    // Run interactive prompts
-    const config = await runCLI();
+program
+  .name('tetto')
+  .description('The complete developer tool for Tetto AI agents')
+  .version('1.0.0');
 
-    // Generate project files
-    await generateAgent(config);
-  } catch (error) {
-    logger.error(error);
-    process.exit(1);
-  }
+// tetto init - Create a new AI agent
+program
+  .command('init')
+  .description('Create a new AI agent')
+  .argument('[name]', 'Agent name (kebab-case)')
+  .action(initCommand);
+
+// Default behavior: if no command specified, run init (backwards compatible)
+if (process.argv.length === 2) {
+  initCommand();
+} else {
+  program.parse();
 }
-
-main();

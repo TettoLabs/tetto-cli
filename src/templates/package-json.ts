@@ -1,4 +1,4 @@
-import { AgentConfig } from '../prompts';
+import { AgentConfig } from '../commands/init-prompts';
 
 export function packageJson(config: AgentConfig): string {
   return JSON.stringify(
