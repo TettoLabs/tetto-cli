@@ -3,6 +3,8 @@
 import { Command } from 'commander';
 import { initCommand } from './commands/init';
 import { callCommand } from './commands/call';
+import { listCommand } from './commands/list';
+import { walletCommand } from './commands/wallet';
 
 const program = new Command();
 
@@ -29,6 +31,23 @@ program
   .option('--network <network>', 'Network (mainnet|devnet)', 'mainnet')
   .option('--debug', 'Debug mode')
   .action(callCommand);
+
+// tetto list - Browse marketplace
+program
+  .command('list')
+  .description('Browse agent marketplace')
+  .option('--type <type>', 'Filter by type (simple|complex|coordinator)')
+  .option('--network <network>', 'Network (mainnet|devnet)', 'mainnet')
+  .action(listCommand);
+
+// tetto wallet - Manage wallets
+program
+  .command('wallet')
+  .description('Manage wallets')
+  .option('--balance', 'Show balance')
+  .option('--create', 'Create new wallet')
+  .option('--network <network>', 'Network for balance check', 'mainnet')
+  .action(walletCommand);
 
 // Default behavior: if no command specified, run init (backwards compatible)
 if (process.argv.length === 2) {
