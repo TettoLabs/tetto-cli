@@ -1,9 +1,9 @@
 {
-  "name": "create-tetto-agent",
-  "version": "0.1.0",
-  "description": "Scaffold Tetto AI agents with one command",
+  "name": "tetto-cli",
+  "version": "1.0.0",
+  "description": "The complete developer tool for Tetto AI agents - create, call, deploy, and manage agents from your terminal",
   "bin": {
-    "create-tetto-agent": "dist/index.js"
+    "tetto": "dist/index.js"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -20,17 +20,22 @@
     "tetto",
     "ai-agents",
     "cli",
+    "developer-tools",
     "scaffold",
     "generator",
     "create",
     "agent",
-    "marketplace"
+    "marketplace",
+    "blockchain",
+    "solana",
+    "payments",
+    "coordinator"
   ],
   "author": "Tetto Labs",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/TettoLabs/create-tetto-agent"
+    "url": "https://github.com/TettoLabs/tetto-cli"
   },
   "engines": {
     "node": ">=20.0.0"
