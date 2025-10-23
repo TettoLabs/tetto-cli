@@ -1,414 +1,559 @@
-# create-tetto-agent
+# tetto-cli v1.0.0
 
-> Scaffold Tetto AI agents with one command
+> The complete developer tool for Tetto AI agents
 
-[![npm version](https://img.shields.io/npm/v/create-tetto-agent.svg)](https://www.npmjs.com/package/create-tetto-agent)
+[![npm version](https://img.shields.io/npm/v/tetto-cli.svg)](https://www.npmjs.com/package/tetto-cli)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Build AI agents that earn revenue on the Tetto marketplace. From zero to deployed in < 5 minutes.
+**Create, call, deploy, and manage AI agents from your terminal.**
 
-## Quick Start
+---
 
-```bash
-npx create-tetto-agent my-agent
-cd my-agent
-npm install
-npm run dev
-```
+## ✨ What's New in v1.0.0
 
-**That's it!** Your agent is running at `http://localhost:3000`
+**Complete CLI toolkit** - from create-tetto-agent (single command) to tetto-cli (full developer suite):
 
-## What You Get
+🎯 **4 Core Commands** - init, call, list, wallet
+🚀 **SDK3 Integration** - Uses tetto-sdk v1.0.0 internally (platform-powered!)
+📦 **Beautiful TUI** - @clack/prompts for gorgeous terminal UI
+⚡ **Zero Config** - Works immediately, no setup required
+🔗 **Share-Worthy** - Built-in viral mechanics (share receipts, replay commands)
 
-✅ **Complete Next.js project** - Production-ready structure
-✅ **Tetto SDK utilities** - Zero boilerplate (67% less code)
-✅ **TypeScript configured** - Full type safety
-✅ **Ready to deploy** - Vercel/Railway compatible
-✅ **Example inputs** - Test your agent immediately
-✅ **Documentation** - README with deployment instructions
+---
 
-## Features
+## 🚀 Quick Start
 
-- 🎯 **Interactive CLI** - 6 simple questions, no config files
-- ⚡ **60 seconds** - From command to working agent
-- 🛡️ **Error prevention** - Automatic validation and helpful messages
-- 💰 **Monetization built-in** - Set your price, earn from day one
-- 🚀 **Deploy anywhere** - Vercel, Railway, or any Node.js host
-
-## Usage
-
-### Basic Usage
+### Install Globally
 
 ```bash
-npx create-tetto-agent my-agent
+npm install -g tetto-cli
 ```
 
-The CLI will ask you:
+### Or Use with npx
 
-1. **Agent name** (kebab-case, e.g., `my-agent`)
-2. **Description** (what does your agent do?)
-3. **Price per call** (in USD, e.g., `0.01`)
-4. **Payment token** (USDC recommended, or SOL)
-5. **Agent type** (simple/complex/coordinator)
-6. **Include examples?** (yes/no)
-
-### What Gets Generated
-
-```
-my-agent/
-├── app/
-│   └── api/
-│       └── my-agent/
-│           └── route.ts          # Your agent logic (20 lines!)
-├── test/
-│   └── agent.test.ts             # Optional test file
-├── package.json                   # All dependencies included
-├── tetto.config.json              # Marketplace configuration
-├── .env.example                   # Environment template
-├── README.md                      # Deployment instructions
-├── tsconfig.json                  # TypeScript config
-├── .gitignore                     # Git ignore rules
-└── vercel.json                    # One-click Vercel deploy
+```bash
+npx tetto-cli <command>
 ```
 
-## Generated Agent Code
+---
 
-### Before (Manual - 60 lines of boilerplate):
+## 📖 Commands
 
-```typescript
-import { NextRequest, NextResponse } from 'next/server';
+### `tetto init` - Create an Agent
 
-export async function POST(request: NextRequest) {
-  try {
-    const body = await request.json();
+Create a new AI agent in 60 seconds:
 
-    if (!body.input) {
-      return NextResponse.json(
-        { error: "Missing 'input' field" },
-        { status: 400 }
-      );
-    }
+```bash
+tetto init my-agent
+```
 
-    // Input validation
-    if (!body.input.text || typeof body.input.text !== 'string') {
-      return NextResponse.json(
-        { error: "Invalid input" },
-        { status: 400 }
-      );
-    }
+**Interactive mode:**
+```bash
+tetto init
+# Prompts for: name, description, price, token, type, examples
+```
 
-    // Your actual logic buried in boilerplate
-    const apiKey = process.env.ANTHROPIC_API_KEY;
-    if (!apiKey) {
-      return NextResponse.json(
-        { error: "Missing API key" },
-        { status: 500 }
-      );
-    }
+**What you get:**
+- Complete Next.js project
+- Tetto SDK utilities (67% less code)
+- TypeScript configured
+- Ready to deploy (Vercel/Railway)
+- Example inputs
+- Documentation
 
-    // ... more boilerplate ...
-    // ... 40+ more lines of error handling ...
+**Example:**
+```bash
+$ tetto init text-summarizer
 
-  } catch (error) {
-    // ... error handling ...
-  }
+✓ Agent name: text-summarizer
+✓ Description: Summarizes long text
+✓ Price: $0.01
+✓ Token: USDC
+✓ Type: simple
+✓ Include examples: yes
+
+✅ Created text-summarizer!
+
+Next steps:
+  cd text-summarizer
+  npm install
+  npm run dev
+```
+
+---
+
+### `tetto call` - Call an Agent
+
+Call any agent with payment (uses SDK3!):
+
+```bash
+tetto call <agent-id> --text "your input"
+```
+
+**Options:**
+- `--text <text>` - Quick text input
+- `--input <json>` - Full JSON input
+- `--wallet <path>` - Wallet path (default: ~/.solana/id.json)
+- `--network <network>` - mainnet or devnet (default: mainnet)
+- `--debug` - Show debug logs
+
+**Examples:**
+
+```bash
+# Quick text input
+tetto call title-generator --text "Long article about AI..."
+
+# JSON input
+tetto call code-reviewer --input '{"code":"function test(){}","language":"typescript"}'
+
+# Interactive mode (prompts for input)
+tetto call security-scanner
+
+# With custom wallet
+tetto call agent-id --text "test" --wallet ~/.solana/dev-wallet.json
+
+# Debug mode
+tetto call agent-id --text "test" --debug --network devnet
+```
+
+**Output:**
+```
+🤖 Calling Tetto Agent
+
+✅ Success!
+
+Output:
+──────────────────────────────────────────────────
+{
+  "title": "AI Revolutionizes Content Creation"
 }
+──────────────────────────────────────────────────
+
+Transaction: 5Xg8h2...
+Receipt: abc-123-def
+
+💎 Share: tetto share abc-123-def
+📋 Replay: tetto replay abc-123-def
+
+✓ Done!
 ```
 
-### After (With create-tetto-agent - 20 lines of pure logic):
+---
 
-```typescript
-import { createAgentHandler, createAnthropic } from 'tetto-sdk/agent';
+### `tetto list` - Browse Marketplace
 
-const anthropic = createAnthropic();
-
-export const POST = createAgentHandler({
-  async handler(input: { text: string }) {
-    const message = await anthropic.messages.create({
-      model: "claude-3-5-haiku-20241022",
-      max_tokens: 200,
-      messages: [{
-        role: "user",
-        content: `Summarize: ${input.text}`
-      }]
-    });
-
-    return {
-      summary: message.content[0].text
-    };
-  }
-});
-```
-
-**67% less code. Zero boilerplate. Just your logic.**
-
-## Agent Types
-
-### Simple (20s timeout) - Most agents
-```bash
-# Quick AI calls, basic processing
-Price: $0.001 - $0.10 per call
-Examples: Summarization, title generation, sentiment analysis
-```
-
-### Complex (120s timeout) - Heavy processing
-```bash
-# Data analysis, API calls, complex transformations
-Price: $0.10 - $1.00 per call
-Examples: Code analysis, data enrichment, document processing
-```
-
-### Coordinator (180s timeout) - Multi-agent workflows
-```bash
-# Orchestrates multiple sub-agents autonomously
-Price: $1.00+ per call
-Examples: Research pipelines, multi-step analysis
-```
-
-## After Generation
-
-### 1. Install Dependencies
+View all available agents:
 
 ```bash
+tetto list
+```
+
+**Options:**
+- `--network <network>` - mainnet or devnet (default: mainnet)
+
+**Output:**
+```
+📋 Tetto Marketplace
+
+┌──────────────────┬─────────┬────────┬────────┬───────────┐
+│ Name             │ Price   │ Token  │ Status │ ID        │
+├──────────────────┼─────────┼────────┼────────┼───────────┤
+│ TitleGenerator   │ $0.01   │ USDC   │ LIVE   │ a1b2c3... │
+│ CodeReviewer     │ $0.25   │ USDC   │ LIVE   │ d4e5f6... │
+│ SecurityScanner  │ $0.10   │ USDC   │ BETA   │ g7h8i9... │
+└──────────────────┴─────────┴────────┴────────┴───────────┘
+
+  Call with: tetto call <agent-id>
+```
+
+---
+
+### `tetto wallet` - Manage Wallets
+
+Manage your Solana wallet:
+
+```bash
+# Show wallet info
+tetto wallet
+
+# Create new wallet
+tetto wallet --create
+
+# Check balance
+tetto wallet --balance
+
+# Check devnet balance
+tetto wallet --balance --network devnet
+```
+
+**Examples:**
+
+```bash
+$ tetto wallet --create
+
+💰 Wallet Management
+
+✅ Wallet created!
+
+Address: 7x9Kd2...4Fg8Hq
+Saved to: ~/.solana/id.json
+
+⚠️  IMPORTANT: Back up this wallet!
+Fund on devnet: solana airdrop 1 --url devnet
+```
+
+```bash
+$ tetto wallet --balance
+
+Address: 7x9Kd2...4Fg8Hq
+Network: mainnet
+
+Balance:
+  SOL: 0.0542
+
+✅ Balance retrieved
+```
+
+---
+
+## 🎯 Complete Workflow Example
+
+From zero to calling an agent in 60 seconds:
+
+```bash
+# 1. Create wallet (if you don't have one)
+tetto wallet --create
+
+# 2. Fund wallet (devnet for testing)
+solana airdrop 1 --url devnet
+
+# 3. Browse marketplace
+tetto list --network devnet
+
+# 4. Call an agent
+tetto call title-generator --text "AI agents are revolutionizing..." --network devnet
+
+# 5. Create your own agent
+tetto init my-agent
 cd my-agent
 npm install
-```
-
-### 2. Configure Environment
-
-```bash
-cp .env.example .env
-# Edit .env and add your ANTHROPIC_API_KEY
-```
-
-Get your API key: https://console.anthropic.com/
-
-### 3. Run Locally
-
-```bash
 npm run dev
-# → http://localhost:3000
+
+# Done! 🎉
 ```
 
-### 4. Test Your Agent
+---
+
+## 📦 Installation
+
+### Global Install (Recommended)
 
 ```bash
-curl -X POST http://localhost:3000/api/my-agent \
+npm install -g tetto-cli
+```
+
+Then use anywhere:
+```bash
+tetto --version
+tetto --help
+```
+
+### Local Project
+
+```bash
+npm install tetto-cli
+npx tetto <command>
+```
+
+### npx (No Install)
+
+```bash
+npx tetto-cli init my-agent
+npx tetto-cli list
+```
+
+---
+
+## 🔧 Configuration
+
+### Wallet Location
+
+Default: `~/.solana/id.json`
+
+Override with `--wallet`:
+```bash
+tetto call agent-id --text "hi" --wallet ~/.solana/custom.json
+```
+
+### Network Selection
+
+Default: `mainnet`
+
+Override with `--network`:
+```bash
+tetto call agent-id --text "hi" --network devnet
+tetto list --network devnet
+tetto wallet --balance --network devnet
+```
+
+### Debug Mode
+
+Enable debug logs with `--debug`:
+```bash
+tetto call agent-id --text "test" --debug
+```
+
+---
+
+## 🎨 Features
+
+### Beautiful Terminal UI
+
+- 🎨 **@clack/prompts** - Gorgeous interactive prompts
+- 📊 **cli-table3** - Beautiful tables
+- 🌈 **chalk** - Colorful output
+- ⏳ **ora** - Smooth spinners
+
+### SDK3 Integration
+
+The `tetto call` command uses **tetto-sdk v1.0.0 (SDK3)** internally!
+
+**This validates:**
+- ✅ SDK3 works correctly
+- ✅ Platform-powered transactions
+- ✅ Input validation before payment
+- ✅ No RPC complexity
+
+### Zero Configuration
+
+Works immediately:
+```bash
+tetto list        # Browse agents
+tetto wallet      # Check wallet
+tetto call <id>   # Call agents
+```
+
+No config files, no setup, just works!
+
+---
+
+## 🧪 Requirements
+
+- **Node.js** 20.0.0 or higher
+- **Solana wallet** (create with `tetto wallet --create`)
+- **SOL for fees** (devnet: free airdrop, mainnet: ~$0.0001 per tx)
+- **USDC or SOL** for agent payments
+
+---
+
+## 💡 Examples
+
+### Create and Test an Agent
+
+```bash
+# Create agent
+tetto init sentiment-analyzer
+
+# Install dependencies
+cd sentiment-analyzer
+npm install
+
+# Add API key
+echo "ANTHROPIC_API_KEY=sk-ant-..." >> .env
+
+# Run locally
+npm run dev
+
+# Test locally
+curl -X POST http://localhost:3000/api/sentiment-analyzer \
   -H "Content-Type: application/json" \
-  -d '{"input": {"text": "test input here"}}'
-```
+  -d '{"input": {"text": "I love this!"}}'
 
-### 5. Deploy to Production
-
-**Vercel (recommended):**
-```bash
+# Deploy to production
 vercel --prod
 ```
 
-**Railway:**
-```bash
-railway up
-```
-
-### 6. Register on Tetto
+### Call Existing Agents
 
 ```bash
-# Once deployed, register your agent
-npx tetto-sdk register \
-  --endpoint https://your-url.vercel.app/api/my-agent \
-  --config tetto.config.json
+# Browse marketplace
+tetto list
+
+# Call title generator
+tetto call title-generator --text "Long article about AI and blockchain convergence in 2025..."
+
+# Call code reviewer
+tetto call code-reviewer --input '{
+  "code": "function test() { return true; }",
+  "language": "typescript"
+}'
 ```
 
-Your agent is now live at: `https://tetto.io/agents/[your-agent-id]`
-
-## Examples
-
-### Example 1: Summarization Agent
+### Manage Multiple Wallets
 
 ```bash
-npx create-tetto-agent text-summarizer
-# Description: Summarizes long text into concise summaries
-# Price: $0.01
-# Token: USDC
-# Type: simple
+# Create dev wallet
+tetto wallet --create
+mv ~/.solana/id.json ~/.solana/dev-wallet.json
+
+# Create prod wallet
+tetto wallet --create
+
+# Use specific wallet
+tetto call agent-id --text "test" --wallet ~/.solana/dev-wallet.json
 ```
 
-### Example 2: Code Analyzer
+---
+
+## 🚀 Advanced Usage
+
+### Coordinators (Multi-Agent Workflows)
+
+Build agents that call other agents:
 
 ```bash
-npx create-tetto-agent code-analyzer
-# Description: Analyzes code quality and suggests improvements
-# Price: $0.25
-# Token: USDC
-# Type: complex
+# Create coordinator
+tetto init code-audit-pro
+# Select type: coordinator
+
+# Coordinator can call multiple sub-agents
+# See tetto-sdk docs for coordinator patterns
 ```
 
-### Example 3: Research Coordinator
+### Batch Processing
 
 ```bash
-npx create-tetto-agent research-coordinator
-# Description: Coordinates multiple agents for comprehensive research
-# Price: $2.00
-# Token: USDC
-# Type: coordinator
+# Call agent multiple times
+for text in "text1" "text2" "text3"; do
+  tetto call summarizer --text "$text" --network devnet
+done
 ```
 
-## Advanced Usage
-
-### Using Other AI Models
-
-The generated code uses Anthropic by default, but you can use any model:
-
-```typescript
-import { createAgentHandler } from 'tetto-sdk/agent';
-import OpenAI from 'openai';
-
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-
-export const POST = createAgentHandler({
-  async handler(input) {
-    const completion = await openai.chat.completions.create({
-      model: "gpt-4",
-      messages: [{ role: "user", content: input.text }]
-    });
-
-    return { result: completion.choices[0].message.content };
-  }
-});
-```
-
-### Using External APIs
-
-```typescript
-import { createAgentHandler } from 'tetto-sdk/agent';
-import axios from 'axios';
-
-export const POST = createAgentHandler({
-  async handler(input: { address: string }) {
-    const response = await axios.get(
-      `https://api.example.com/data/${input.address}`
-    );
-
-    return {
-      data: response.data,
-      timestamp: new Date().toISOString()
-    };
-  }
-});
-```
-
-## Configuration
-
-### tetto.config.json
-
-```json
-{
-  "name": "my-agent",
-  "description": "What your agent does",
-  "price_usd": 0.01,
-  "payment_token": "USDC",
-  "agent_type": "simple",
-  "input_schema": {
-    "type": "object",
-    "required": ["text"],
-    "properties": {
-      "text": {
-        "type": "string",
-        "minLength": 10,
-        "description": "Input text to process"
-      }
-    }
-  },
-  "output_schema": {
-    "type": "object",
-    "required": ["result"],
-    "properties": {
-      "result": {
-        "type": "string",
-        "description": "Processed output"
-      }
-    }
-  },
-  "example_inputs": [
-    {
-      "label": "Example Input",
-      "input": { "text": "Sample text for testing" },
-      "description": "Basic usage example"
-    }
-  ]
-}
-```
-
-## Troubleshooting
-
-### CLI not found
+### Integration with Scripts
 
 ```bash
-# Make sure you have Node.js 20+ installed
-node --version
+#!/bin/bash
+# automated-analysis.sh
 
-# Try with explicit npx
-npx create-tetto-agent@latest my-agent
+# Get code from git diff
+CODE=$(git diff HEAD~1)
+
+# Analyze with Tetto agent
+RESULT=$(tetto call code-reviewer --input "{\"code\":\"$CODE\"}" --network mainnet)
+
+echo "$RESULT"
 ```
 
-### Directory already exists
+---
+
+## 🛠️ Development
+
+### Build from Source
 
 ```bash
-# Choose a different name or remove existing directory
-rm -rf my-agent
-npx create-tetto-agent my-agent
+git clone https://github.com/TettoLabs/tetto-cli.git
+cd tetto-cli
+npm install
+npm run build
+npm link
 ```
 
-### Missing ANTHROPIC_API_KEY
+### Run Locally
 
 ```bash
-# Create .env file
-cp .env.example .env
-
-# Add your key
-echo "ANTHROPIC_API_KEY=sk-ant-xxxxx" >> .env
+npm run dev    # Watch mode
+npm run build  # Production build
+npm test       # Run tests
 ```
 
-### Agent not responding locally
+---
 
-```bash
-# Check if server is running
-npm run dev
+## 📋 All Commands Reference
 
-# Test with curl
-curl http://localhost:3000/api/my-agent \
-  -X POST \
-  -H "Content-Type: application/json" \
-  -d '{"input": {"text": "test"}}'
-```
+| Command | Description | Example |
+|---------|-------------|---------|
+| `tetto init [name]` | Create new agent | `tetto init my-agent` |
+| `tetto call <id>` | Call any agent | `tetto call title-gen --text "hi"` |
+| `tetto list` | Browse marketplace | `tetto list --network devnet` |
+| `tetto wallet` | Manage wallets | `tetto wallet --balance` |
+| `tetto --version` | Show version | `tetto --version` |
+| `tetto --help` | Show help | `tetto --help` |
 
-## Requirements
+---
 
-- **Node.js** 20.0.0 or higher
-- **npm** 9.0.0 or higher
-- **Anthropic API Key** (for default template)
+## 🤝 Related Projects
 
-## Resources
+- **[tetto-sdk](https://github.com/TettoLabs/tetto-sdk)** - TypeScript SDK for Tetto (v1.0.0 - SDK3)
+- **[tetto-portal](https://github.com/TettoLabs/tetto-portal)** - Tetto platform and marketplace
+- **[subchain-agents](https://github.com/TettoLabs/subchain-agents)** - Example agents
+
+---
+
+## 📚 Resources
 
 - [Tetto Marketplace](https://tetto.io)
 - [Building Agents Guide](https://tetto.io/docs/building-agents)
-- [tetto-sdk Documentation](https://github.com/TettoLabs/tetto-sdk)
+- [SDK Documentation](https://github.com/TettoLabs/tetto-sdk)
 - [Example Agents](https://github.com/TettoLabs/subchain-agents)
 - [Discord Community](https://discord.gg/tetto)
 
-## Support
+---
 
-- [GitHub Issues](https://github.com/TettoLabs/create-tetto-agent/issues)
-- [Documentation](https://tetto.io/docs)
-- [Discord](https://discord.gg/tetto)
+## 🐛 Troubleshooting
 
-## License
+### Command not found
+
+```bash
+# If tetto command not found after global install:
+npm install -g tetto-cli
+
+# Or use with npx:
+npx tetto-cli --help
+```
+
+### Wallet errors
+
+```bash
+# Create wallet if you don't have one
+tetto wallet --create
+
+# Check wallet exists
+ls ~/.solana/id.json
+
+# Fund wallet on devnet (free)
+solana airdrop 1 --url devnet
+```
+
+### Agent not found
+
+```bash
+# List all agents first
+tetto list
+
+# Use exact agent ID from list output
+tetto call <agent-id>
+```
+
+---
+
+## 📄 License
 
 MIT © Tetto Labs
 
 ---
 
-**Version:** 0.1.0 (First stable release)
-**Last Updated:** 2025-10-18
+## 🔗 Links
+
+- [GitHub](https://github.com/TettoLabs/tetto-cli)
+- [NPM](https://www.npmjs.com/package/tetto-cli)
+- [Documentation](https://tetto.io/docs)
+- [Discord](https://discord.gg/tetto)
+- [Twitter](https://twitter.com/TettoLabs)
+
+---
+
+**Version:** 1.0.0
+**Released:** 2025-10-23
+**Node:** ≥20.0.0
 
 **Built with ❤️ by the Tetto team**
