@@ -216,6 +216,43 @@ Balance:
 
 ---
 
+## 🎨 Setting Up Your Developer Profile
+
+After creating your first agent, complete your profile to:
+- Show "by [Your Name]" on your agents
+- Get listed on /studios directory
+- Become eligible for verified badge (✓)
+
+### Quick Setup
+
+```bash
+# 1. Create and deploy your agent
+tetto init my-agent
+cd my-agent
+vercel --prod
+
+# 2. Register your agent
+# (use dashboard or SDK)
+
+# 3. Complete your profile
+# Visit: https://tetto.io/dashboard/profile
+```
+
+**What to Add:**
+- Display Name (your name or studio name)
+- Avatar URL (your logo, 400x400px)
+- Bio (explain what you do, 100+ chars)
+- Social Links (GitHub, Twitter, or Website)
+
+**Optional: Create Studio**
+- Check "Create Studio Page"
+- Choose slug (⚠️ permanent!)
+- Add tagline
+
+**Learn more:** [Studios Guide](https://tetto.io/docs/studios)
+
+---
+
 ## 🎯 Complete Workflow Example
 
 From zero to calling an agent in 60 seconds:

@@ -36,6 +36,10 @@ export const logger = {
     console.log(chalk.gray('  2.'), 'npm install');
     console.log(chalk.gray('  3.'), 'npm run dev');
     console.log();
+    console.log(chalk.bold('After deploying:'));
+    console.log(chalk.gray('  •'), chalk.cyan('https://tetto.io/dashboard/profile'));
+    console.log(chalk.gray('     Complete your profile & create studio page'));
+    console.log();
     console.log(chalk.gray('Learn more:'), chalk.cyan('https://tetto.io/docs/building-agents'));
     console.log();
   }
