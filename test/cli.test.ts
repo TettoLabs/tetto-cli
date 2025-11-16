@@ -82,7 +82,7 @@ try {
 
   if (parsed.name === 'test-agent' &&
       parsed.version === '0.1.0' &&
-      parsed.dependencies['tetto-sdk'] === '^0.1.0' &&
+      parsed.dependencies['tetto-sdk'] === '^2.5.1' &&
       parsed.scripts.dev === 'next dev' &&
       parsed.engines.node === '>=20.0.0') {
     console.log('✅ packageJson: generates valid package.json');

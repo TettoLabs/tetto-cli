@@ -20,7 +20,7 @@ program
   .argument('[name]', 'Agent name (kebab-case)')
   .action(initCommand);
 
-// tetto call - Call any AI agent (uses SDK3!)
+// tetto call - Call any AI agent (uses Tetto SDK v2.5.1)
 program
   .command('call')
   .description('Call any AI agent')

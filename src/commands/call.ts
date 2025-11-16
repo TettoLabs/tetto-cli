@@ -61,9 +61,9 @@ export async function callCommand(
 
     const secretKey = JSON.parse(fs.readFileSync(walletPath, 'utf-8'));
     const keypair = Keypair.fromSecretKey(Uint8Array.from(secretKey));
-    const wallet = createWalletFromKeypair(keypair);  // SDK3: No connection!
+    const wallet = createWalletFromKeypair(keypair);  // Platform-powered - no connection needed
 
-    // Step 3: Initialize SDK3
+    // Step 3: Initialize Tetto SDK
     const config = getDefaultConfig(options.network || 'mainnet');
     if (options.debug) config.debug = true;
     const tetto = new TettoSDK(config);

@@ -87,8 +87,8 @@ async function callCommand(agentId, options) {
         }
         const secretKey = JSON.parse(fs_1.default.readFileSync(walletPath, 'utf-8'));
         const keypair = web3_js_1.Keypair.fromSecretKey(Uint8Array.from(secretKey));
-        const wallet = (0, tetto_sdk_1.createWalletFromKeypair)(keypair); // SDK3: No connection!
-        // Step 3: Initialize SDK3
+        const wallet = (0, tetto_sdk_1.createWalletFromKeypair)(keypair); // Platform-powered - no connection needed
+        // Step 3: Initialize Tetto SDK
         const config = (0, tetto_sdk_1.getDefaultConfig)(options.network || 'mainnet');
         if (options.debug)
             config.debug = true;
