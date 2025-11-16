@@ -1,10 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.vercelConfig = exports.gitignore = exports.tsConfig = exports.readme = exports.envExample = exports.tettoConfig = exports.routeFile = exports.packageJson = void 0;
+exports.vercelConfig = exports.gitignore = exports.tsConfig = exports.readme = exports.envExample = exports.tettoConfig = exports.coordinatorRouteFile = exports.routeFile = exports.packageJson = void 0;
 var package_json_1 = require("./package-json");
 Object.defineProperty(exports, "packageJson", { enumerable: true, get: function () { return package_json_1.packageJson; } });
 var route_1 = require("./route");
 Object.defineProperty(exports, "routeFile", { enumerable: true, get: function () { return route_1.routeFile; } });
+var route_coordinator_1 = require("./route-coordinator");
+Object.defineProperty(exports, "coordinatorRouteFile", { enumerable: true, get: function () { return route_coordinator_1.coordinatorRouteFile; } });
 var tetto_config_1 = require("./tetto-config");
 Object.defineProperty(exports, "tettoConfig", { enumerable: true, get: function () { return tetto_config_1.tettoConfig; } });
 var env_example_1 = require("./env-example");

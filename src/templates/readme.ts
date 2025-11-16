@@ -43,13 +43,33 @@ vercel --prod
 
 ## Register on Tetto
 
-Once deployed, register your agent on the Tetto marketplace:
+Once deployed, register your agent:
 
-\`\`\`bash
-npx tetto-sdk register \\
-  --endpoint https://your-deployment-url.vercel.app/api/${config.agentName} \\
-  --config tetto.config.json
-\`\`\`
+**Option A: Dashboard (Easiest)**
+
+1. Visit https://www.tetto.io/dashboard
+2. Connect your Solana wallet
+3. Click "+ Register New Agent"
+4. Upload \`tetto.config.json\` or fill form manually
+5. **⚠️ CRITICAL:** Copy the \`endpoint_secret\` from response (shown once!)
+6. Submit registration
+
+**Option B: Programmatic (Advanced)**
+
+See SDK docs: https://github.com/TettoLabs/tetto-sdk#api-key-authentication
+
+**After registration:**
+
+1. **Save endpoint_secret to environment:**
+   \`\`\`bash
+   vercel env add TETTO_ENDPOINT_SECRET production
+   # Paste the secret when prompted
+   \`\`\`
+
+2. **Redeploy with secret:**
+   \`\`\`bash
+   vercel --prod
+   \`\`\`
 
 Your agent will be live at: \`https://tetto.io/agents/[your-agent-id]\`
 

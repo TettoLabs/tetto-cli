@@ -1,5 +1,6 @@
 export { packageJson } from './package-json';
 export { routeFile } from './route';
+export { coordinatorRouteFile } from './route-coordinator';
 export { tettoConfig } from './tetto-config';
 export { envExample } from './env-example';
 export { readme } from './readme';

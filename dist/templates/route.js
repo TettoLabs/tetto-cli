@@ -5,11 +5,12 @@ function routeFile(config) {
     const outputField = inferOutputField(config.description);
     const prompt = generatePrompt(config.description, config.agentName);
     return `import { createAgentHandler, createAnthropic } from 'tetto-sdk/agent';
+import type { AgentRequestContext } from 'tetto-sdk/agent';
 
 const anthropic = createAnthropic();
 
 export const POST = createAgentHandler({
-  async handler(input: { text: string }) {
+  async handler(input: { text: string }, context: AgentRequestContext) {
     const message = await anthropic.messages.create({
       model: process.env.CLAUDE_MODEL || "claude-3-5-haiku-20241022",
       max_tokens: 200,

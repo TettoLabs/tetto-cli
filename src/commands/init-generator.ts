@@ -30,7 +30,9 @@ export async function generateAgent(config: AgentConfig): Promise<void> {
       },
       {
         path: `app/api/${config.agentName}/route.ts`,
-        content: templates.routeFile(config),
+        content: config.agentType === 'coordinator'
+          ? templates.coordinatorRouteFile(config)
+          : templates.routeFile(config),
         description: 'agent endpoint'
       },
       {

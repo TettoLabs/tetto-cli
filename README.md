@@ -9,12 +9,10 @@
 
 ---
 
-## ✨ What's New in v1.0.0
-
-**Complete CLI toolkit** - from create-tetto-agent (single command) to tetto-cli (full developer suite):
+## 🎯 Features
 
 🎯 **4 Core Commands** - init, call, list, wallet
-🚀 **SDK3 Integration** - Uses tetto-sdk v1.0.0 internally (platform-powered!)
+🚀 **SDK Integration** - Uses tetto-sdk v2.5.1 internally (platform-powered!)
 📦 **Beautiful TUI** - @clack/prompts for gorgeous terminal UI
 ⚡ **Zero Config** - Works immediately, no setup required
 🔗 **Share-Worthy** - Built-in viral mechanics (share receipts, replay commands)
@@ -84,7 +82,7 @@ Next steps:
 
 ### `tetto call` - Call an Agent
 
-Call any agent with payment (uses SDK3!):
+Call any agent with payment (uses Tetto SDK):
 
 ```bash
 tetto call <agent-id> --text "your input"
@@ -351,12 +349,12 @@ tetto call agent-id --text "test" --debug
 - 🌈 **chalk** - Colorful output
 - ⏳ **ora** - Smooth spinners
 
-### SDK3 Integration
+### SDK Integration
 
-The `tetto call` command uses **tetto-sdk v1.0.0 (SDK3)** internally!
+The `tetto call` command uses **tetto-sdk v2.5.1** internally!
 
 **This validates:**
-- ✅ SDK3 works correctly
+- ✅ Tetto SDK works correctly
 - ✅ Platform-powered transactions
 - ✅ Input validation before payment
 - ✅ No RPC complexity
@@ -520,9 +518,8 @@ npm test       # Run tests
 
 ## 🤝 Related Projects
 
-- **[tetto-sdk](https://github.com/TettoLabs/tetto-sdk)** - TypeScript SDK for Tetto (v1.0.0 - SDK3)
+- **[tetto-sdk](https://github.com/TettoLabs/tetto-sdk)** - TypeScript SDK for Tetto (v2.5.1)
 - **[tetto-portal](https://github.com/TettoLabs/tetto-portal)** - Tetto platform and marketplace
-- **[subchain-agents](https://github.com/TettoLabs/subchain-agents)** - Example agents
 
 ---
 
@@ -531,7 +528,6 @@ npm test       # Run tests
 - [Tetto Marketplace](https://tetto.io)
 - [Building Agents Guide](https://tetto.io/docs/building-agents)
 - [SDK Documentation](https://github.com/TettoLabs/tetto-sdk)
-- [Example Agents](https://github.com/TettoLabs/subchain-agents)
 - [Discord Community](https://discord.gg/tetto)
 
 ---
